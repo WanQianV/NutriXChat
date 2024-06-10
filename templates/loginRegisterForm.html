@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://kit.fontawesome.com/289e32f898.js" crossorigin="anonymous"></script> 
+    </head>
+
+    <body style="background-color: #89a6bf;">
+        <div class="form-popup">
+            <!-- Left overlay container with image -->
+            <div class="overlay-container">
+                <div class="overlay">
+                    <img class="asset" src="{{ url_for('static', filename='images/Asset1.png') }}">
+                </div>
+            </div>
+            <!-- register and login form -->
+            <div class="form-container log-in-container">
+                <!-- Close button -->
+                <i class="fa fa-times" onclick="closeModal()"></i>
+                
+                <div class="wrapper">
+                    <div class="title-text">
+                    <div class="title login">Login Form</div>
+                    <div class="title register">Register Form</div>   
+                </div>
+                    <div class="form-box">
+                        <!-- Slide button for login & register form -->
+                        <div class="slide-control">
+                            <input type="radio" name="slide" id="login" checked>
+                            <input type="radio" name="slide" id="register">
+                            <label for="register" class="slide register">Register</label>
+                            <label for="login" class="slide login">Login</label>
+                            
+                            <div class="slider-tab"></div>
+                        </div>
+
+                        <div class="form-inner"> 
+                            <!-- Login form-->
+                            <form action="/" class="Login" method="POST">
+                                <div class="field">
+                                    <input type="email" name="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="field">
+                                    <input type="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="forgetPassword">
+                                    <a href="/forgetPassword">Forget password?</a>
+                                </div>
+                                <div class="loginBtn">
+                                    <input type="submit" name="login_submit" value="Login">
+                                </div>
+                                <!-- <button type="button" class="google-sign-in-button" >
+                                    <img width="15px" alt="Google login" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=" />
+                                    Sign in with Google
+                                </button> -->
+                            </form> 
+
+                            <!-- Register form -->
+                            <form action="/" class="Register" method="post">
+                                <div class="field">
+                                    <input type="text" placeholder="Username" name="username" required>
+                                </div>
+                                <div class="field">
+                                    <input type="email" placeholder="Email Address" name="email" required>
+                                </div>
+                                <div class="field">
+                                    <input type="date" placeholder="Date of Birth" id="birthdate" name="birthdate" required>
+                                </div>
+                                <div class="field">
+                                    <!-- password validation - uppercase + special character + min 8 character -->
+                                    <input id="passwordInput" type="password" placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[@#$%!]).{8,}" title="A valid password includes at least one uppercase letter, one special character (!@#$%), and has a minimum length of 8 characters" required>
+                                </div>
+                                <div class="field">
+                                    <input id="confirmPasswordInput" type="password" placeholder="Confirm Password" name="cpassword" required>
+                                    <div id="passwordMatchMessage"></div>
+                                </div>
+                                <div class="RegisterBtn">
+                                    <input type="submit" name="register_submit" value="Register" id="registerButton" disabled>
+                                </div>
+                            </form>
+                        </div>  
+                    </div>
+                </div> 
+            </div>
+        </div>
+                
+    
+        <script>
+            // Function to handle swiping between login and register forms
+            function handleFormSwipe(){
+                const loginBtn = document.querySelector("label.login");
+                const registerBtn = document.querySelector("label.register");
+
+                loginBtn.addEventListener('click', function(){
+                    loadLoginForm();
+                });
+
+                registerBtn.addEventListener('click', function(){
+                    loadRegisterForm();
+                });
+            }
+
+            // Load login form
+            function loadLoginForm(){
+                fetch('/login')
+                    .then(response => response.text())
+                    .then(data =>{
+                        document.querySelector('.modal').innerHTML = data;
+                        applySwipeEffect(); 
+                    });
+            }
+            // swipe register and login form when user click the selected button
+            const loginText = document.querySelector(".title-text .login");
+            const loginForm = document.querySelector("form.Login");
+            const loginBtn = document.querySelector("label.login");
+            const registerBtn = document.querySelector("label.register");
+            
+            loginBtn.onclick = (()=>{
+                loginText.style.marginLeft = "0%";
+                loginForm.style.marginLeft = "0%";
+            });
+            registerBtn.onclick = (()=>{
+                loginText.style.marginLeft = "-50%";
+                loginForm.style.marginLeft = "-50%";
+            });
+
+            // Function to close the modal
+            function closeModal(){
+                window.history.back();
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const passwordInput = document.getElementById("passwordInput");
+                const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+                const passwordMatchMessage = document.getElementById("passwordMatchMessage");
+                const registerButton = document.getElementById("registerButton");
+
+                // check password == confirmpassword
+                function checkPasswords() {
+                    if (passwordInput.value !== confirmPasswordInput.value) {
+                        passwordMatchMessage.textContent = 'Passwords do not match!';
+                        passwordMatchMessage.style.color = 'red';
+                        confirmPasswordInput.setCustomValidity('Passwords do not match!');
+                        registerButton.disabled = true;
+                    } else {
+                        passwordMatchMessage.textContent = '';
+                        confirmPasswordInput.setCustomValidity('');
+                        registerButton.disabled = false;
+                    }
+                }
+
+                passwordInput.addEventListener('input', checkPasswords);
+                confirmPasswordInput.addEventListener('input', checkPasswords);
+            });
+
+
+
+
+
+        </script>
+    </body>
+</html>

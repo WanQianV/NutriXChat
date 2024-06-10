@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Abhaya Libre", serif;
+}
+body{
+    overflow: hidden;
+}
+.bg{
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    background: #eef3ff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    background: #ffffff;
+    box-shadow: 3px 3px 10px #6d80b7;
+}
+.logo{
+    width: 12em;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    margin-left: 30px;
+}
+.icon{
+    font-size: 30px;
+    color: #054376;
+    cursor: pointer;
+    margin-top: 18px;
+    margin-right: 40px;
+}
+.nav .sub-menu-wrap{
+    position: absolute;
+    top: 63px;
+    right: 2%;
+    width: 300px;
+    z-index: 1;
+    box-shadow: 0 2px 0px rgba(87, 87, 87, 0.2);
+    /* toggle menu function*/
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+.sub-menu-wrap.open-menu{
+    max-height: 180px;
+}
+.sub-menu{
+    background: #eeeeee;
+    padding: 10px;
+    margin-top: 5px;
+}
+.user-info h3{
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #054376;
+}
+.sub-menu hr{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #054376;
+    margin: 10px 0 10px;
+}
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.sub-menu-link:hover{
+    color: #000000;
+    font-weight: 900;
+}
+.sub-menu-link p{
+    width: 100%;
+}
+.sub-menu-link i{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 100%;
+    padding: 10px;
+    margin-right: 15px;
+}
+.sub-menu-link span{
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+
+
+
+/* === Chat history ===*/
+.left-container{
+    float: left;
+    width: 18%;
+    background-color: #ffffff;
+    background-image: url("images/bg.png");
+    height: 640px;
+    border-right: 2px solid #7695d3;
+    margin-top: 1px;
+    transition: width 0.5s; /* Add transition for smooth animation */
+  z-index: 999;
+}
+.clear-chat{
+    background-color: #000000;
+    padding: 10px;
+    border: 2px dashed #bdbdbd;
+    margin: 20px 10px 10px 10px;
+}
+.clear-chat:hover{
+    background-color: #3b558b;
+}
+.clear-chat h3{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.tips{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.tips-container{
+    width: 90%;
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff9bd;
+    border: 3px dashed #171717;
+    height: auto;
+    overflow-y: auto;
+    max-height: 535px;
+}
+/* Hide scrollbar */
+.tips-container::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+  }
+  
+  /* Optional: If you need to style the track */
+  .tips-container::-webkit-scrollbar-track {
+    background: transparent; /* Make scrollbar track transparent */
+  }
+  
+  /* Optional: If you need to style the thumb (the draggable bar) */
+  .tips-container::-webkit-scrollbar-thumb {
+    background: transparent; /* Make scrollbar thumb transparent */
+  }
+
+
+
+/* ==Show when responsive== */
+#hamburger-icon{
+    color: #054376;
+    font-size: 20px;
+    position: fixed; 
+    top: 75px; 
+    left: 15px;
+    bottom: 20px;
+    visibility: hidden;
+}
+.sidenav{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 62px;
+    left: 0;
+    background-image: url("images/bg.png");
+    overflow-x: hidden;
+    transition: 0.2s;
+}
+.sidenav .closebtn{
+    position: absolute;
+    right: 5px;
+    font-size: 18px;
+    z-index: 5;
+}
+.tips{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.tips-container{
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+
+
+/* chatbot interface */
+.right-container{
+    float: left;
+    width: 82%;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end;
+}
+.chatbot{
+    position: fixed;
+    bottom: 20px;
+    width: 80%;
+    height: 85%;
+    background: #fff;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border: 3px solid #84a5dd;
+}
+.chatbot header{
+    color: #fff;
+    background: #054376;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 15px 0;
+    text-align: center;
+}
+.chatbot header h2{
+    font-size: 22px;
+}
+.chatbot .chatbox{
+    height: 83%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 15px 20px 2px;
+}
+.chatbox .chat{
+    display: flex;
+    list-style: none;
+}
+.chatbox .incoming{
+    margin-bottom: 20px;
+    margin-left: -10px;
+}
+.chatbox .incoming img{
+    width: 35px;
+    height: 32px;
+    padding: 4px;
+    margin: 0 8px 2px 0;
+    text-align: center;
+    align-self: flex-end;
+    background: #d2dbe2;
+    border: 1px solid #054376;
+    border-radius: 4px;
+}
+.chatbox .chat p{
+    font-size: 16px;
+    color: #fff;
+    background: #054376;
+    padding: 18px 20px;
+    border-radius: 10px 10px 0 10px;
+    max-width: 75%;
+    white-space: pre-wrap;
+}
+.chatbox .incoming p{
+    color: #000000;
+    background: #eaeaea;
+    border-radius: 10px 10px 10px 0;
+}
+.chatbox .outgoing{
+    margin: 20px;
+    justify-content: flex-end;
+    margin-right: -10px;
+}
+.chat-input{
+    position: absolute;
+    bottom: 0; 
+    width: 100%;
+    display: flex;
+    background: #fff;
+    padding: 1px 20px;
+    border-top: 1px solid #969696;
+}
+.chat-input textarea{
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+    padding-top: 10px;
+    max-height: 100px;
+}
+.chat-input span{
+    align-self: flex-end;
+    line-height: 35px;
+    color:#054376;
+    font-size: 17px;
+    cursor: pointer;
+    visibility: hidden;
+}
+.chat-input textarea:valid ~ span {
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+/* === Profile Customization === */
+.modal{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(244, 250, 255, 0.9); 
+}
+/* close button */
+.fa-times{
+    color: #fff;
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.fa-times:hover{
+    color: #727272;
+}
+.title{
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+    background-color: #054376;
+    color: #fff;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.modal-content{
+    background-color: #fefefe;
+    margin: 8% auto; 
+    border: 3px solid #054376;
+    width: 600px;
+    height: 500px;
+    border-radius: 10px;
+}
+.modal-content hr{
+    margin-bottom: 10px;
+}
+.modal-content h4{
+    text-align: center;
+    color: #ab4444;
+    margin: 20px;
+}
+#profileForm{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 50px 0 50px; 
+}
+
+label{
+    width: 120px; 
+    text-align: left; 
+    margin-right: 10px;
+}
+input{
+    flex: 1;
+    text-align: left;
+}
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"]
+ {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.button-container{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+button{
+    font-size: 22px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.save-btn{
+    background-color: #054376;
+    color: white;
+    margin-top: 30px;
+    padding: 8px 20%; 
+}
+
+
+
+
+
+
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 550px) {
+    .logo{
+        width: 11em;
+        margin-left: 20px;
+    }
+    .icon{
+        font-size: 25px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+    .nav .sub-menu-wrap{
+        width: 200px;
+    }
+    .user-info h3{
+        font-size: 20px;
+    }
+    .sub-menu-link{
+        font-size: 15px;
+    }
+    .left-container{
+        visibility: hidden;
+    }
+    .clear-chat{
+        padding: 10px;
+        margin-top: 50px;
+    }
+    .clear-chat:hover{
+        background-color: #000000;
+    }
+    #hamburger-icon {
+        visibility: visible;
+    }
+    .right-container{
+        width: 100%;
+    }
+    .chatbot{
+        width: 90%;
+        height: 82%;
+    }
+    .chatbot header h2{
+        font-size: 19px;
+    }
+    .chatbox .chat p{
+        font-size: 16px;
+    }
+
+    .modal{
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(244, 250, 255, 0.9); 
+        padding-top: 50px;
+    }
+    /* close button */
+    .fa-times{
+        margin-top: 15px;
+        font-size: 22px;
+    }
+    .title{
+        font-size: 20px;
+    }
+    .modal-content{
+        margin: 15% auto; 
+        width: 350px;
+        height: 460px;
+    }
+    #profileForm{
+        font-size: 16px;
+    }
+    .input-container {
+        margin: 2px 25px 0 25px; 
+    }
+    button{
+        font-size: 18px;
+    }
+    .save-btn{
+        margin-top: 20px;
+    }
+    
+}

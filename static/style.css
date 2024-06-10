@@ -1,0 +1,583 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Abhaya Libre", serif;
+}
+body{
+    overflow: hidden;
+}
+.bg{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+   width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  
+  /* Set background image properties */
+  background-image: url("images/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+  z-index: -2;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width: 12em;
+    margin: 25px;
+}
+/* Login button */
+.formPopup{
+    background: transparent;
+    color: #054376;
+    border: 2px solid #054376;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin: 25px;
+}
+.formPopup:hover {
+    background-color: #054376;
+    color: #fff;
+    cursor: pointer;
+}
+.container{
+    width: 95%;
+    margin: auto;
+}
+.article{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    transform: translateY(8vh);
+}
+.article h4{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: -3rem;
+    margin-bottom: -0.5px;
+}
+.article h1{
+    font-size: 4.5rem;
+    color: #054376;
+    letter-spacing: 0.25rem;
+}
+.article p{
+    font-size: 1.0rem;
+    margin-bottom: 1.9rem;
+}
+.article .try_btn{
+    background-color: #054376;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    transition: all .30s ease;
+}
+.article .try_btn:hover{
+    background: transparent;
+    color: #054376;
+    border: 2px solid #054376;
+}
+.article .try_btn i{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+/* background assets */
+.robot{
+    position: fixed;
+    width: 20rem;
+    bottom: 1px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    animation: scale-down 1s ease-in-out alternate infinite;
+    z-index: -1;
+}
+.cloud {
+    position: relative;
+}
+/* Left top */
+.cloud1{
+    position: absolute; 
+    z-index: -2;
+    width: 10rem;
+    margin-top: -15%; 
+    left: 12%; 
+    transform: scaleX(-1);
+    animation: moveRightToLeft 25s linear infinite;
+}
+/* Left below */
+.cloud2{
+    position: absolute;
+    z-index: -2; 
+    width: 18rem;
+    margin-top: -5%; 
+    left: -1%;
+    animation: moveLeftToRight 25s linear infinite;
+}
+/* Right top */
+.cloud3{
+    position: absolute; 
+    z-index: -2;
+    width: 16rem;
+    margin-top: -12%; 
+    right: 2%;
+    animation: moveRightToLeft 25s linear infinite; 
+}
+/* Right below */
+.cloud4{
+    position: absolute; 
+    z-index: -2;
+    width: 12rem;
+    margin-top: 5%; 
+    right: 15%;
+    transform: scalex(-1);
+    animation: moveLeftToRight 35s linear infinite;
+}
+
+
+/* animate cloud & robot */
+@keyframes moveRightToLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes moveLeftToRight {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes scale-down{
+    to{
+        transform: translateY(10px);
+    }
+}
+
+
+
+
+
+/* === register & login page === */
+/* form */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(6, 19, 109, 0.4);
+}
+.form-popup {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 600px;
+	margin: 4% auto;
+}
+/* left container */
+.overlay-container {
+	position: absolute;
+	width: 50%;
+	height: 100%;
+}
+.overlay {
+	background: linear-gradient(to right, #63aacc, #c2ddeb);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    overflow: hidden;
+}
+.asset{
+    width: 47rem;
+    padding: 30px;
+    margin: -120px;
+    padding-top: 80px;
+}
+/* right container -login/register */
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+}
+.log-in-container {
+	left: 50%;
+	width: 50%;
+	z-index: 2;
+}
+
+/* close button */
+.fa-times {
+    color: #1a1717;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.fa-times:hover {
+    color: #446f93;
+}
+.title{
+    font-size: 20px;
+}
+.wrapper{
+    overflow: hidden;
+    max-width: 390px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+}
+.wrapper .title-text{
+    display: flex;
+    width: 200%;
+    margin-top: 20px;
+    color: #052c4b;
+}
+.wrapper .title{
+    width: 50%;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+.wrapper .form-box{
+    width: 100%;
+    overflow: hidden;
+}
+/* slide control login & register button */
+.form-box .slide-control{
+    position: relative;
+    display: flex;
+    height: 40px;
+    width: 100%;
+    margin: 20px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.slide-control .slide{
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 1;
+}
+.slide-control label.login{
+    color: #000;
+}
+.slide-control .slider-tab{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: -webkit-linear-gradient(left, #052c4b, #36526d);
+}
+input[type="radio"]{
+    display: none;
+}
+#login:checked ~ .slider-tab{
+    left: 50%;
+}
+#login:checked ~ .login{
+    color: #fff;
+}
+#login:checked ~ .register{
+    color: #000;
+}
+
+.form-box .form-inner{
+    display: flex;
+    width: 200%;
+}
+.form-inner form{
+    width: 50%;
+}
+.form-inner form .field{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+.field input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.form-inner form .field input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+.form-inner form .field input:focus{
+    border-color: #446f93;
+}
+.form-inner form .forgetPassword{
+    margin-top: 5px;
+}
+.form-inner form .forgetPassword a{
+    color: #161692;
+    text-decoration: none;
+}
+.form-inner form .forgetPassword a:hover{
+    text-decoration: underline;
+}
+.loginBtn input[type="submit"],
+.RegisterBtn input[type="submit"]{
+    height: 100%;
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px;
+    background: -webkit-linear-gradient(left, #052c4b, #36526d);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+/* Styles for the disabled state */
+.RegisterBtn input:disabled {
+    color: #666666; 
+    cursor: not-allowed; 
+}
+
+/* .google-sign-in-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background: transparent;
+    color: #054376;
+    border: 1px solid #054376;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;  
+}
+.google-sign-in-button img{
+    vertical-align: middle;
+    width: 20px;
+    margin-right: 8px;
+}
+.google-sign-in-button:hover {
+    background-color: #ebf4f9;
+} */
+
+
+
+/* === Forget password page === */
+.ResetPsw-Container{
+	background-color: #ffffff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+.ResetPsw-Container header{
+    font-size: 25px;
+    font-weight: 900;
+    padding: 20px 10px 10px 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    background-color: #054376;
+    color: #fff;
+}
+h5{
+    font-size: 15px;
+    font-weight: 500;
+    color:#970000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.form-innerRP{
+    display: flex; 
+    justify-content: center; 
+    width: 100%;
+}
+.form-innerRP form{
+    width: 80%;
+    transition: all 0.5s cubic-bezier(0.65,-0.55,0.2,1);
+}
+.form-innerRP form .fieldRP{
+    height: 50px;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 20px; 
+}
+.form-innerRP form .fieldRP input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+form .fieldRP h3, h4{
+    font-size: 19px;
+    margin-bottom: 2px;
+}
+form .fieldRP h4{
+    margin-top: 40px;
+}
+.ResetPsw-Container i{
+    color: #fff;
+}
+.ResetPsw-Container i:hover{
+    color: #93c2ef;
+}
+.submitBtn input[type="submit"]{
+    height: 100%;
+    width: 100%;
+    margin: 20px 0 30px 0;
+    padding: 10px;
+    background: -webkit-linear-gradient(left, #052c4b, #36526d);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 550px) {
+    .bg{
+        left: 50%;
+        margin-left: -512px;   
+    }
+    .formPopup{
+        font-size: 1rem;
+        padding: 5px 10px;
+    }
+    .article{
+        width: 90%;
+        transform: translateY(5vh);
+    }
+    .article h4{
+        font-size: 1rem;
+    }
+    .article h1{
+        font-size: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .article p{
+        font-size: 0.8rem;
+    }
+    .robot{
+        width: 20rem;
+    }
+    .cloud1, .cloud2, .cloud3, .cloud4{
+        display: none;
+    }
+
+    /* login register form */
+    .form-popup {
+        top: 8%;
+        width: 80%;
+        overflow: hidden;
+    }
+    .overlay-container, .overlay, .asset{
+        display: none;
+    }
+    .form-container {
+        position: absolute;
+        width: 100%;
+        height: 20%;
+    }
+    .log-in-container {
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
+    /* .google-sign-in-button {
+        background-position: 0 11px 20px 11px ;
+    } */
+
+    /* reset password form */
+    .ResetPsw-Container{
+        width: 80%;
+    }
+    .ResetPsw-Container header{
+        font-size: 20px;;
+    }
+    .form-innerRP form .fieldRP input{
+        font-size: 15px;
+    }
+    form .fieldRP h3, h4{
+        font-size: 16px;
+    }
+    .submitBtn input[type="submit"]{
+        font-size: 18px;
+    }
+}
+
