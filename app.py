@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify # type: ignore
-from flask_mysqldb import MySQL # type: ignore
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify 
+from flask_mysqldb import MySQL
 from datetime import datetime
 import spacy
 import numpy as np
